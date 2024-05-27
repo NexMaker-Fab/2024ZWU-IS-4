@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test1page</title>
+</head>
+<style>
+    .gbc{
+        background-color: rgb(226, 224, 221);
+
+    }
+</style>
+<body>
+   
+    <style>
+        body{
+            height: 100%;
+            margin: 0;
+            background-image: url("IMG_2142.JPG");
+            background-size: cover; /* 确保图片完整显示 */
+            background-repeat: no-repeat; /* 不重复图片 */
+            background-position: center; /* 图片居中显示 */
+            background-attachment: fixed; /* 背景图片固定，不随滚动条滚动 */
+
+         }
+    
+         .container{
+            width: 750px;
+            height: auto;
+            padding: 20px;
+            margin: 0 auto;
+            background-color: #fff;
+       
+         }
+         .title{
+            width: 100%;
+            display: flex;
+            line-height: 15px;
+         }
+         .title img{
+            margin-left: 0%;
+          
+         }
+          
+         .return-button {  
+    position: fixed;  
+    bottom: 10px;  
+    right: 10px;  
+    padding: 5px 10px;  
+    background-color: #333;  
+    color: #fff;  
+    border: none;  
+    border-radius: 5%;  
+    cursor: pointer; 
+    border-bottom: 1px solid #ddd; 
+  }     
+        
+      </style>
+    <body>
+        <div class="container">
+            <div class="title">
+                <div class="title-text">
+ 
+                    <h1>Processing   </h1>
+                    <h2>Open source tools</h2>
+                    <h5>P5.js (usually written as p5) is a JavaScript library used for creative programming, particularly in art, design, and education. It is based on the programming model of Processing (a widely used programming language in the art and design world), but written in JavaScript, making it run on the web.</h5>
+                        <br><h4>The main features of p5.js include:</h4>
+                        <h5><br>Easy to get started: p5.js adopts a concise API, allowing beginners to quickly grasp the basics of programming.
+                        <br>Powerful features: It provides functions such as drawing graphics, processing images, creating animations, and processing user input.
+                        <br>Art and Design Orientation: The design of p5.js takes into account the needs of art and design, making it easier for artists and designers to express their creativity.
+                        <br>Community support: p5.js has an active community that provides rich tutorials, sample code, forums, and other resources to help users learn and solve problems.
+                        <br>Cross platform: As p5.js is based on JavaScript, it can run on any browser that supports JavaScript, including desktops and mobile devices.</h5>  
+                    
+               
+                <img src="IMG_8061.PNG" width="350" height="300"/>
+                <hr>
+                    
+                    <h2>Interacting with the mouse   </h2>
+                    <h3>Meaning of code   </h3>
+                    <div class="gbc">
+      
+                    
+                    <h5><pre>
+void setup() {  
+size(800, 800);// 设置画布的大小为800x800像素  
+background(0);// 设置背景颜色为黑色（在Processing中，0代表黑色）  
+ noCursor();// 隐藏鼠标光标  
+ }void draw() {  
+stroke(255);// 设置线条颜色为白色（在Processing中，255代表白色）  
+strokeWeight(random(1));// 随机设置线条的粗细，但这里的random(1)只会产生0到1之间的数，可能不是你想要的效果  
+line(mouseX, 0, mouseX, height);  // 画一条从(mouseX, 0)到(mouseX, height)的垂直线  
+ine(0, mouseY, width, mouseY);   // 画一条从(0, mouseY)到(width, mouseY)的水平线  
+}</h5></pre>
+                    </div>
+                    <h3>Show  </h3>
+                    <video controls width="400"height="250">
+                    <br><source src="IMG_8026.mp4" video="mp4 "width="400" height="250" /></video>
+                    <hr>
+                    <h2>Communicate with Ardunio  </h2>
+                    <h3>Meaning of code   </h3>
+                    <div class="gbc">
+<h5><pre>importprocessing.serial.*;//导入串口库
+SerialmyPort;//串口对象
+ArrayList<FireWork>works;
+Potpot;
+voidsetup(){
+size(800,600);//设置窗口大小
+works=newArrayList<FireWork>();
+myPort=newSerial(this,"COM4",9600);//初始化串口，设置为COM4，波特率为9600
+pot=newPot(width/2,height-(height/4));//在窗口的特定位置添加一个陶罐
+}
+voiddraw(){
+background(0);//设置背景颜色为黑色
+pot.display();//显示陶罐
+//处理works列表
+for(inti=works.size()-1;i>=0;i--){
+FireWorkwork=works.get(i);
+work.display();
+work.end(i);
+}
+//检查串口是否有数据可用
+if(myPort.available()>0){
+StringinString=myPort.readStringUntil('\n');//读取一行数据
+if(inString!=null){
+inString=trim(inString);
+//去除首尾空格
+if(inString.equals("1")){//如果收到的消息是"1"
+works.add(newFireWork(pot.position.x,pot.position.y));//在陶罐的位置添加一个新的FireWork对象
+}
+}
+}
+}
+classPot{
+PVectorposition;
+Pot(floatx,floaty){</h5></pre>
+</div>
+<div class="gbc">
+<h5><pre>position=newPVector(x,y);
+}
+voiddisplay(){
+fill(150,75,0);//陶罐颜色
+noStroke();
+ellipse(position.x,position.y,50,50);//陶罐的形状和大小
+}
+}
+//以下是FireWork类的定义，代表一个烟花。
+classFireWork{//定义一个名为FireWork的类
+floatspeed;//声明一个浮点型变量，用于存储烟花的速度
+intcount;//声明一个整型变量，用于计数或记录状态
+ArrayList<Pops>pops;//声明一个Pops类型的ArrayList，用于存储爆炸效果
+FireWork(floatX,floatY){//构造函数，带两个浮点参数X和Y，表示烟花的初始位置
+position=newPVector(X,Y);//初始化位置变量
+speed=random(0.5,2);//随机初始化速度在0.5到2之间
+pops=newArrayList<Pops>();//初始化爆炸效果的列表
+pops.add(newPops(position.x,position.y,speed));//在列表中添加一个新的爆炸效果
+}
+voiddisplay(){//显示方法
+count+=1;//计数器递增
+if(count%60==0&&count<180){//如果计数器是60的倍数且小于180
+pops.add(newPops(position.x,position.y,speed));//添加新的爆炸效果
+}
+for(inti=0;i<pops.size();i++){//遍历所有的爆炸效果
+pops.get(i).load(count);//加载或更新每个爆炸效果的状态
+}
+}
+voidend(intnum){//结束方法，带一个整型参数
+if(count>240){//如果计数器大于240
+works.remove(num);//从某个列表（可能是全局的works列表）中移除当前烟花对象
+}
+}</h5></pre></div>
+<div class="gbc">
+<h5><pre>}//以下是Pops类的定义，代表烟花的一个爆炸效果。
+classPops{
+PVector[]pops;
+floatspeed;
+floatbits;
+Pops(floatX,floatY,floatspeed){
+pops=newPVector[16];
+for(inti=0;i<16;i++){
+pops[i]=newPVector(X,Y);
+}
+this.speed=speed;
+}
+voidload(intcount){
+pops[0].y-=speed;
+pops[1].x+=speed;
+pops[2].y+=speed;
+pops[3].x-=speed;
+pops[4].y-=speed*0.7;
+pops[4].x+=speed*0.7;
+pops[5].x+=speed*0.7;
+pops[5].y+=speed*0.7;
+pops[6].x-=speed*0.7;
+pops[6].y+=speed*0.7;
+pops[7].x-=speed*0.7;
+pops[7].y-=speed*0.7;
+bits=1.2;
+pops[8].x+=speed*0.5*bits;
+pops[8].y-=speed*bits;
+pops[9].x+=speed*bits;
+pops[9].y-=speed*0.5*bits;
+pops[10].x+=speed*bits;
+pops[10].y+=speed*0.5*bits;
+pops[11].x+=speed*0.5*bits;
+pops[11].y+=speed*bits;
+pops[12].x-=speed*0.5*bits;
+pops[12].y+=speed*bits;
+pops[13].x-=speed*bits;
+pops[13].y+=speed*0.5*bits;
+pops[14].x-=speed*bits;
+pops[14].y-=speed*0.5*bits;
+pops[15].x-=speed*0.5*bits;
+pops[15].y-=speed*bits;//移动点
+if(count>60){
+for(inti=0;i
+pops.length;i++){
+pops[i].y+=speed*(count/300.0);
+}
+}
+noStroke();
+fill(#f75766);
+for(inti=0;i<8;i++){
+ellipse(pops[i].x,pops[i].y,10,10);
+}
+fill(#f8da31);
+for(inti=8;i < 16;i++){
+ellipse(pops[i].x,pops[i].y,10,10);
+}
+}
+}</h5></pre></div>
+
+                
+                   
+                    
+                    <h3>Show  </h3>
+                    
+                        
+
+                    <video controls width="400"height="250">
+                    <source src="IMG_8044.mp4" video="mp4" width="400"height="250" /></video>
+                
+                </body>
+                <!-- 返回按钮 -->
+  <button class="return-button" onclick="window.location.href='//127.0.0.1:3000/dailyhomework/index.html';">BACK</button>
+</div>
+                </html>

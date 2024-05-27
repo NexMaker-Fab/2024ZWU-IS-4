@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  background-image: url(IMG_2097.JPG);
+  background-size: 100% 100%; /* 完全铺满，可能导致拉伸 */
+  background-position: center; /* 确保背景图片居中显示 */
+  background-repeat: no-repeat; /* 防止背景图片重复 */
+  cursor: hand;
+}
+
+
+.wl-nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  background-color: #333; /* Dark background for visibility */
+}
+
+.top-menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.btn {
+  background: none;
+  border: 1px solid white; /* 可以视觉上看起来像按钮 */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  display: inline-block; /* 保持按钮的内联块级特性 */
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: grey; /* 鼠标悬停时的背景颜色改变 */
+}
+
+
+.btn a {
+  color: white;
+  text-decoration: none;
+}
