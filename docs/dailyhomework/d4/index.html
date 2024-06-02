@@ -72,7 +72,7 @@
                         <br>Cross platform: As p5.js is based on JavaScript, it can run on any browser that supports JavaScript, including desktops and mobile devices.</h5>  
                     
                
-                <img src="IMG_8061.PNG" width="350" height="300"/>
+                <img src="IMG_8061.PNG" width="750" height=""/>
                 <hr>
                     
                     <h2>Interacting with the mouse   </h2>
@@ -81,20 +81,178 @@
       
                     
                     <h5><pre>
-void setup() {  
-size(800, 800);// 设置画布的大小为800x800像素  
-background(0);// 设置背景颜色为黑色（在Processing中，0代表黑色）  
- noCursor();// 隐藏鼠标光标  
- }void draw() {  
-stroke(255);// 设置线条颜色为白色（在Processing中，255代表白色）  
-strokeWeight(random(1));// 随机设置线条的粗细，但这里的random(1)只会产生0到1之间的数，可能不是你想要的效果  
-line(mouseX, 0, mouseX, height);  // 画一条从(mouseX, 0)到(mouseX, height)的垂直线  
-ine(0, mouseY, width, mouseY);   // 画一条从(0, mouseY)到(width, mouseY)的水平线  
-}</h5></pre>
+//int[] colors = {#2364aa,#3da5d9,#73bfb8,#fec601,#ea7317};
+//颜色模式1
+int[] colors = {#008cc5,#33cccc,#f7fff7,#ff6b6b,#ffe66d};
+//颜色模式2
+int num = 1000;//the number of point(s).点的数量                
+float mts = PI/24;//max theta speed.旋转速度
+int r = 150;//radius of the circle围绕鼠标的圈大小
+int rdtr = 5;//range of the rdt  
+int rdu = 5;//radius of circle点的大小  
+PVector v[]=new PVector[num];//方向数组  
+boolean mv = true;//设置变量
+boolean mo = true;//设置变量  
+color c[] = new color[num];//每个点的颜色 
+float theta[] = new float[num];//每个点的原始角度  
+float mtheta[] = new float[num];//点旋转的值
+float dtheta[] = new float[num];//点旋转的速度
+float easing[] = new float[num];       
+int rdt[] = new int[num];//形成圆环的半径
+void setup() {          
+colorMode(RGB, 255, 255, 255);//设置颜色模式
+size(600, 600);//画布大小
+<num-1; i++) {//循环点的数量次
+                        
+                        c[i] = colors[(int)random(colors.length)];//随机选择颜色
+                        
+                        v[i] = new PVector(random(width), random(height));//随机位置
+                        
+                        theta[i] = round(random(360));//随机角度
+                        
+                        dtheta[i] = random(mts);//随机旋转速度
+                        
+                        mtheta[i] = theta[i]/180*PI;//随机旋转角度
+                        
+                        rdt[i] = round(random(-rdtr, rdtr));//随机半径
+                        
+                        easing[i] = random(0.02, 0.3);//随机跟随速度
+                        
+                        }
+                        
+                        frameRate(60);//刷新速率
+                        
+                        }
+                        
+                        void draw() {
+                        
+                        fill(25, 25, 25, 25);//填充颜色
+                        
+                        rect(0, 0, width, height);//画方形
+                        
+                        pushMatrix();//开始形式设置
+                        
+                        noStroke();//无边
+                        
+                        if (mv) {
+                        
+                        if (mo) {
+                        
+                        for (int i = 0; i<num-1; i++) {//开始循环
+                        
+                        mtheta[i] += dtheta[i];//旋转角度加上旋转速度
+                        
+                        v[i].lerp(mouseX+cos(mtheta[i])*(rdt[i]+r), mouseY+sin(mtheta[i])*(rdt[i]+r), 0, easing[i]);//跟随鼠标移动变化
+                        
+                        fill(c[i]);//填充颜色
+                        
+                        ellipse(v[i].x, v[i].y, rdu, rdu);//画圆
+                        
+                        }
+                        
+                        }
+                        
+                        if (!mo) {
+                        for (int i = 0; i<num-1; i++) {//开始循环
+                        v[i].lerp(mouseX+cos(mtheta[i])*(rdt[i]+r), mouseY+sin(mtheta[i])*(rdt[i]+r), 0, easing[i]);//跟随鼠标移动变化
+                        
+                        fill(c[i]);//填充颜色
+                        
+                        ellipse(v[i].x, v[i].y, rdu, rdu);//画圆
+                        
+                        }
+                        
+                        }
+                        
+                        }
+                        
+                        if (!mv) {
+                        
+                        if (mo) {
+                        
+                        for (int i = 0; i<num-1; i++) {//开始循环
+                        
+                        mtheta[i] += dtheta[i];//旋转角度加上旋转速度
+                        
+                        v[i].lerp(mouseX+cos(mtheta[i])*rdt[i], mouseY+sin(mtheta[i])*rdt[i], 0, easing[i]);//跟随鼠标移动变化
+                        
+                        fill(c[i]);//填充颜色
+                        
+                        ellipse(v[i].x, v[i].y, rdu, rdu);//画圆
+                        
+                        }
+                        
+                        }
+                        
+                        if (!mo) {
+                        
+                        for (int i = 0; i<num-1; i++) {//开始循环
+                        
+                        v[i].lerp(mouseX+cos(mtheta[i])*rdt[i], mouseY+sin(mtheta[i])*rdt[i], 0, easing[i]);//跟随鼠标移动变化
+                        
+                        fill(c[i]);//填充颜色
+                        
+                        ellipse(v[i].x, v[i].y, rdu, rdu);//画圆
+                        
+                        }
+                        
+                        }
+                        
+                        }
+                        
+                        popMatrix();设置形式结束
+                        
+                        fill(0);//填充颜色
+                        
+                        rect(0, 0, width, 15);//画方形
+                        
+                        fill(255);//填充颜色
+                        
+                        }
+                        
+                        void mousePressed() {//点击鼠标
+                        
+                        /*for(int i = 0;i<num-1;i++){//开始循环
+                        
+                        v[i] = new PVector(random(width),random(height));//随机位置
+                        
+                        theta[i] = round(random(360));//随机每个点的原始角度
+                        
+                        mtheta[i] = theta[i]/180*PI;//随机旋转角度
+                        
+                        dtheta[i] = random(mts);//随机点旋转的速度
+                        
+                        rdt[i] = round(random(-rdtr,rdtr)+r);
+                        
+                        }*/
+                        
+                        mv = !mv;
+                        
+                        }
+                        
+                        void keyPressed() {//按键点击
+                        
+                        if (key == 's'||key == 'S') {//点击S
+                        
+                        mo =!mo;
+                        
+                        }
+                        
+                        }
+                        
+                        void mouseWheel(MouseEvent event) {
+                        
+                        float e = event.getCount();
+                        
+                        if (e == -1) r+=10;
+                        
+                        if (e == 1) r-=10;
+                        
+                        }```</h5></pre>
                     </div>
                     <h3>Show  </h3>
-                    <video controls width="400"height="250">
-                    <br><source src="IMG_8026.mp4" video="mp4 "width="400" height="250" /></video>
+                    <video controls width="750"height="">
+                    <br><source src="IMG_7129 2.mp4" video="mp4 "width="400" height="250" /></video>
                     <hr>
                     <h2>Communicate with Ardunio  </h2>
                     <h3>Meaning of code   </h3>
@@ -133,8 +291,6 @@ works.add(newFireWork(pot.position.x,pot.position.y));//在陶罐的位置添加
 classPot{
 PVectorposition;
 Pot(floatx,floaty){</h5></pre>
-</div>
-<div class="gbc">
 <h5><pre>position=newPVector(x,y);
 }
 voiddisplay(){
@@ -167,8 +323,7 @@ voidend(intnum){//结束方法，带一个整型参数
 if(count>240){//如果计数器大于240
 works.remove(num);//从某个列表（可能是全局的works列表）中移除当前烟花对象
 }
-}</h5></pre></div>
-<div class="gbc">
+}
 <h5><pre>}//以下是Pops类的定义，代表烟花的一个爆炸效果。
 classPops{
 PVector[]pops;
@@ -236,9 +391,9 @@ ellipse(pops[i].x,pops[i].y,10,10);
                     
                         
 
-                    <video controls width="400"height="250">
+                    <video controls width="750"height="">
                     <source src="IMG_8044.mp4" video="mp4" width="400"height="250" /></video>
-                
+                    <img src="烟花_画板 1.png" width="750" height=""/>
                 </body>
                 <!-- 返回按钮 -->
                 <button class="return-button" onclick="window.location.href='https://nexmaker-fab.github.io/2024ZWU-IS-4/dailyhomework/index.html'">BACK</button>

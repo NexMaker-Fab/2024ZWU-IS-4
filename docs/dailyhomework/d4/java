@@ -1,0 +1,188 @@
+```java
+public class HelloWorld {  
+    public static void main(String[] args) {  
+        System.out.println("Hello, World!");  
+//int[] colors = {#2364aa,#3da5d9,#73bfb8,#fec601,#ea7317};
+//颜色模式1
+int[] colors = {#008cc5,#33cccc,#f7fff7,#ff6b6b,#ffe66d};
+//颜色模式2
+int num = 1000;//the number of point(s).点的数量
+
+float mts = PI/24;//max theta speed.旋转速度
+
+int r = 150;//radius of the circle围绕鼠标的圈大小
+
+int rdtr = 5;//range of the rdt
+
+int rdu = 5;//radius of circle点的大小
+
+PVector v[]=new PVector[num];//方向数组
+
+boolean mv = true;//设置变量
+
+boolean mo = true;//设置变量
+
+color c[] = new color[num];//每个点的颜色
+
+float theta[] = new float[num];//每个点的原始角度
+
+float mtheta[] = new float[num];//点旋转的值
+
+float dtheta[] = new float[num];//点旋转的速度
+float easing[] = new float[num];
+
+int rdt[] = new int[num];//形成圆环的半径
+
+void setup() {
+
+colorMode(RGB, 255, 255, 255);//设置颜色模式
+
+size(600, 600);//画布大小
+
+for (int i =0; i<num-1; i++) {//循环点的数量次
+
+c[i] = colors[(int)random(colors.length)];//随机选择颜色
+
+v[i] = new PVector(random(width), random(height));//随机位置
+
+theta[i] = round(random(360));//随机角度
+
+dtheta[i] = random(mts);//随机旋转速度
+
+mtheta[i] = theta[i]/180*PI;//随机旋转角度
+
+rdt[i] = round(random(-rdtr, rdtr));//随机半径
+
+easing[i] = random(0.02, 0.3);//随机跟随速度
+
+}
+
+frameRate(60);//刷新速率
+
+}
+
+void draw() {
+
+fill(25, 25, 25, 25);//填充颜色
+
+rect(0, 0, width, height);//画方形
+
+pushMatrix();//开始形式设置
+
+noStroke();//无边
+
+if (mv) {
+
+if (mo) {
+
+for (int i = 0; i<num-1; i++) {//开始循环
+
+mtheta[i] += dtheta[i];//旋转角度加上旋转速度
+
+v[i].lerp(mouseX+cos(mtheta[i])*(rdt[i]+r), mouseY+sin(mtheta[i])*(rdt[i]+r), 0, easing[i]);//跟随鼠标移动变化
+
+fill(c[i]);//填充颜色
+
+ellipse(v[i].x, v[i].y, rdu, rdu);//画圆
+
+}
+
+}
+
+if (!mo) {
+for (int i = 0; i<num-1; i++) {//开始循环
+v[i].lerp(mouseX+cos(mtheta[i])*(rdt[i]+r), mouseY+sin(mtheta[i])*(rdt[i]+r), 0, easing[i]);//跟随鼠标移动变化
+
+fill(c[i]);//填充颜色
+
+ellipse(v[i].x, v[i].y, rdu, rdu);//画圆
+
+}
+
+}
+
+}
+
+if (!mv) {
+
+if (mo) {
+
+for (int i = 0; i<num-1; i++) {//开始循环
+
+mtheta[i] += dtheta[i];//旋转角度加上旋转速度
+
+v[i].lerp(mouseX+cos(mtheta[i])*rdt[i], mouseY+sin(mtheta[i])*rdt[i], 0, easing[i]);//跟随鼠标移动变化
+
+fill(c[i]);//填充颜色
+
+ellipse(v[i].x, v[i].y, rdu, rdu);//画圆
+
+}
+
+}
+
+if (!mo) {
+
+for (int i = 0; i<num-1; i++) {//开始循环
+
+v[i].lerp(mouseX+cos(mtheta[i])*rdt[i], mouseY+sin(mtheta[i])*rdt[i], 0, easing[i]);//跟随鼠标移动变化
+
+fill(c[i]);//填充颜色
+
+ellipse(v[i].x, v[i].y, rdu, rdu);//画圆
+
+}
+
+}
+
+}
+
+popMatrix();设置形式结束
+
+fill(0);//填充颜色
+
+rect(0, 0, width, 15);//画方形
+
+fill(255);//填充颜色
+
+}
+
+void mousePressed() {//点击鼠标
+
+/*for(int i = 0;i<num-1;i++){//开始循环
+
+v[i] = new PVector(random(width),random(height));//随机位置
+
+theta[i] = round(random(360));//随机每个点的原始角度
+
+mtheta[i] = theta[i]/180*PI;//随机旋转角度
+
+dtheta[i] = random(mts);//随机点旋转的速度
+
+rdt[i] = round(random(-rdtr,rdtr)+r);
+
+}*/
+
+mv = !mv;
+
+}
+
+void keyPressed() {//按键点击
+
+if (key == 's'||key == 'S') {//点击S
+
+mo =!mo;
+
+}
+
+}
+
+void mouseWheel(MouseEvent event) {
+
+float e = event.getCount();
+
+if (e == -1) r+=10;
+
+if (e == 1) r-=10;
+
+}  ```
