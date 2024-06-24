@@ -168,12 +168,17 @@
                         <h4>7. Start working</h4>
                         <video controls width="750" height="">
                             <source src="IMG_8660.mp4"type="video/mp4">
+
                         </video>
                         <hr>
                         <h2>Postprocess the surface</h2>
                         <video controls width="750" height="">
+                            <source src="1.mp4"type="video/mp4">
+                        </video>
+                        <video controls width="750" height="">
                             <source src="petal_20240616_181701.mp4"type="video/mp4">
                         </video>
+                        <img src="IMG_7937.JPG"width="750" height=""/>
                         <video controls width="750" height="">
                             <source src="10436_raw.mp4"type="video/mp4">
                         </video>
@@ -207,6 +212,36 @@
                                     <img src="10..png"width="750" height=""/>
                                     
                                     <h2>3D path</h2>
+                                    <h4>
+                                        <br>TYPE:SKIRT
+
+                                        <br>Represents comments in G-code.
+                                        <br> TYPE
+                                        <br>indicates that the following command will create a skirt.
+                                        <br> Purpose: The skirt is the line around the actual print that prepares the nozzle and ensures a smooth flow of material. The following command will create a skirt.
+                                        
+                                        <br>G1 F1500 E0
+                                        
+                                        <br> G1: Linear movement (printing movement).
+                                        <br>F1500: Set the moving speed to 1500 mm/min.
+                                        <br>E0: Set the extrusion amount to 0 mm³. This resets the extrusion distance.
+                                        <br>Purpose: Initialize or reset the extrusion before starting skirt printing. Linear movement, speed 1500 mm/min, reset extrusion volume to 0 mm³.
+                                        
+                                        <br>G1 F1800 X72.722 Y114.974 E0.11031
+                                        
+                                        <br>G1: Linear movement (printing movement).
+                                        <br>F1800: Set the moving speed to 1800 mm/min.
+                                        <br>X72.722 Y114.974: Move to coordinates (72.722, 114.974).
+                                        <br>E0.11031: Extrusion of 0.11031 mm³ material.
+                                        <br>Purpose: The print head moves to the next point while extruding a small amount of material to begin forming the skirt. Move linearly to coordinates (72.722, 114.974), speed is 1800 mm/min, and extrude 0.11031 mm³ of material.
+                                        
+                                        <br>G1 X74.246 Y114.752 E0.18714
+                                        
+                                        <br>G1: Linear movement (printing movement).
+                                        <br>X74.246 Y114.752: Move to coordinates (74.246, 114.752).
+                                        <br>E0.18714: A total of 0.18714 mm³ of material is extruded.
+                                        <br>Purpose: To continue extruding material while moving to the next point, forming part of the skirt. Move linearly to coordinates (74.246, 114.752), extruding a total of 0.18714 mm³ of material.</h4>
+                                        <img src="47.png"width="750" height=""/>
                                     <h3>Download plugin (nozzleboss)</h3>
                                     <h4>1. Search for nozzleboss plugin on github</h4>
                                     <img src="15.png"width="750" height=""/>
