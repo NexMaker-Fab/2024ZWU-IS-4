@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test1page</title>
+</head>
+<style>
+    .gbc{
+        background-color: rgb(226, 224, 221);
+
+    }
+    
+</style>
+<body>
+   
+    <style>
+        body{
+            height: 100%;
+            margin: 0;
+            background-image: url("IMG_2142.JPG");
+            background-size: cover; /* 确保图片完整显示 */
+            background-repeat: no-repeat; /* 不重复图片 */
+            background-position: center; /* 图片居中显示 */
+            background-attachment: fixed; /* 背景图片固定，不随滚动条滚动 */
+
+         }
+    
+         .container{
+            width: 750px;
+            height: auto;
+            padding: 20px;
+            margin: 0 auto;
+            background-color: #fff;
+       
+         }
+         .title{
+            width: 100%;
+            display: flex;
+            line-height: 15px;
+         }
+         .title img{
+            margin-left: 0%;
+          
+         }
+          
+          
+        
+      </style>
+    <body>
+        <div class="container">
+            <div class="title">
+                <div class="title-text">
+ 
+                    <h1>Final Project </h1>
+                    <h2>Concept Description</h2>
+                    <h3>Sustainable Development Goals:Good Health And Well-Being</h3>
+                    <h4>The third goal of the United Nations Development Goals is to ensure a healthy lifestyle and promote the well-being of people of all ages. This goal specifically includes measures such as reducing child and maternal mortality rates, popularizing basic healthcare, preventing and treating non communicable diseases, and promoting mental health and well-being. These measures aim to ensure that everyone can enjoy the guarantee of health and well-being by improving global health levels.
+                    </h4>
+                    <img src="图片.png" width="750" height=""/>
+                   <h3>Problem points solved by the project</h3>
+                   <h4>In today's society, with the acceleration of work pace and the increase of competitive pressure, people generally face pressure in work and study. This kind of pressure not only affects people's physical health, but more importantly, it has a serious impact on their mental health. Many people feel lonely, anxious, depressed, and lack emotional support and companionship. To alleviate this problem, we have designed an intelligent potted plant based on the third United Nations Sustainable Development Goal.</h4>
+                   <img src="IMG_9018.JPG" width="750" height=""/>
+                   <h2>Pre- design</h2>
+                   <h3>Idea sketch </h3>
+                   <h4>This is an intelligent potted plant with a LCD screen and sound sensor, attracting people with its cute appearance.</h4>
+                   <img src="IMG_9053.JPG" width="750" height=""/>
+                   <h3>Major function </h3>
+                   <h4><br>1. The visual effect of green plants: Green plants can alleviate visual fatigue, make the work environment more comfortable, make the mood more joyful, improve focus, and increase work efficiency.
+                    <br>2. Relaxation effect of sound: The randomly played prompt sound can help users relax their body and mind, and relieve stress.
+                    <br>3. Psychological stress relief: The dynamic "small expressions" displayed on the screen can convey positive feedback to the user.
+                    Users control the lighting of LED lights by clapping and blowing air. Through the process of interactive games, users can shift their attention and reduce work pressure.
+                    </h4>
+                    <img src="图片5.png" width="750" height=""/>
+                    <h3>Technical implementation</h3>
+                    <h4>Sound sensor - microphone:
+                        <br>Users can control the LED lights to turn off by blowing air</h4>
+                        <img src="IMG_9023.JPG" width="750" height=""/>
+                    <h4>0.96-inch OLED LCD screen:
+                        <br>Touching plants, vibration sensors receiving signals, LCD screen switching dynamic "small expressions"</h4>
+                        <img src="IMG_9147.JPG" width="750" height=""/>
+                        <h4>Horn:
+                            <br>Vibration sensor receives signal, horn emits random statement</h4>
+                        <img src="IMG_9140.JPG" width="750" height=""/>
+                    <h2>Interaction mode</h2>
+                    <h4>Palm response: When the user claps, the electronic potted plant will light up, providing visual feedback. Blow air into the microphone and the light goes out.</h4>
+                    <img src="哈哈哈-01.png" width="750" height=""/>
+                    <h4>Touch response: When the user touches a plant, different expressions will be displayed on the LCD screen, accompanied by different sound effects.</h4>
+                    <img src="焊接图-01.png" width="750" height=""/>
+                    <h3>Potted plant concept diagram</h3>
+                    <img src="未命名作品 1.jpg" width="750" height=""/>
+                    <h3>Potting device diagram</h3>
+                    <img src="图片1.png" width="750" height=""/>
+                    <img src="图片22.png" width="750" height=""/>
+                    <h3>Schematic diagram of potted plant achievements</h3>
+                    <img src="未命名作品.jpg" width="750" height=""/>
+                    <h3>Appearance production - purchasing materials</h3>
+                    <img src="截屏2024-06-26 17.24.09.png" width="750" height=""/>
+                    <h3>Appearance production - process</h3>
+                    <img src="图片6.png" width="750" height=""/>
+                    <img src="IMG_9136.JPG" width="750" height=""/>
+                    <img src="IMG_9037.JPG" width="750" height=""/>
+                    <img src="GIF_20240627090137675.GIF" width="750" height=""/>
+                    <img src="GIF_20240627090406807.GIF" width="750" height=""/>
+                    <img src="GIF_20240627090629627.GIF" width="750" height=""/>
+                    
+
+                    <h3>Code testing</h3>
+                    <h4>"Small emoji" display</h4>
+                    <a href ="https://animator.wokwi.com/">动效生成链接</a>
+                    <img src="屏幕截图 2024-06-27 083821.png" width="750" height=""/>
+                    <img src="屏幕截图 2024-06-27 083947.png" width="750" height=""/>
+                    <img src="GIF_20240626173251781.GIF" width="750" height=""/>
+                    <h4>Sound playback</h4>
+                    <video controls width="750" height="">
+                        <source src="IMG_9043.mp4"type="video/mp4">
+                    </video>
+                    <div class="gbc">
+                        <pre>
+#include <Wire.h>
+#include <Adafruit_SSD1306.h>
+#include <Adafruit_GFX.h>                         
+int D[10] = {2400, 2250, 2000, 2700, 2200, 2200}; // 数组长度应匹配实际使用的长度
+int n = 0;
+void setup() {
+Serial.begin(9600);
+pinMode(32, OUTPUT);
+digitalWrite(32, HIGH);
+pinMode(34, OUTPUT);
+digitalWrite(34, HIGH);
+pinMode(36, OUTPUT);
+digitalWrite(36, HIGH);
+pinMode(38, OUTPUT);
+digitalWrite(38, HIGH);
+pinMode(40, OUTPUT);
+digitalWrite(40, HIGH);
+pinMode(42, OUTPUT);
+digitalWrite(42, HIGH);
+}
+                            
+void loop() {
+int sensorValue = analogRead(A0); // 模拟读取传感器值
+if (sensorValue > 100) {
+int randomAudio = random(2, 8); // random函数返回[1, 6]的随机数
+switch (randomAudio) {
+case 2:
+randomAudio = 32;
+n = 0;
+break;
+case 3:
+randomAudio = 34;
+n = 1;
+break;
+case 4:
+randomAudio = 36;
+n = 2;
+break;
+case 5:
+randomAudio = 38;
+n = 3;
+break;
+case 6:
+randomAudio = 40;
+n = 4;
+break;
+case 7:
+randomAudio = 42;
+n = 5;
+break;
+}
+Serial.print(D[n]);
+Serial.print("  ");
+digitalWrite(randomAudio, LOW);
+delay(D[n]); // 延迟时间
+digitalWrite(randomAudio, HIGH);
+Serial.println(randomAudio);
+}
+}   
+                    </div></pre>
+                    <h3>The on/off of LED lights</h3>
+                    <img src="GIF_20240627222601940.GIF" width="750" height=""/>
+                    <h3>Renderings - Intelligent Potted Plants</h3>
+                    <img src="567a26209f3e171220f084bdbe81904e.JPG" width="750" height=""/>
+                    <h3>Final work</h3>
+                    <video controls width="750" height="">
+                        <source src="zuizhong.mp4"type="video/mp4">
+                    </video>       
+                </body>
+                </html>
